@@ -1,0 +1,7 @@
+const express = require('express'); const app = express(); app.use(express.json()); let products=[]; let nextId=1;
+function validateProduct(request,response,next){if(!request.body.name||typeof request.body.price!=='number')return response.status(400).json({error:'name and numeric price required'});next()}
+app.get('/api/products',(request,response)=>response.status(200).json(products));
+app.post('/api/products',validateProduct,(request,response)=>{const product={id:nextId++,...request.body};products.push(product);response.status(201).json(product)});
+app.put('/api/products/:id',validateProduct,(request,response)=>{const index=products.findIndex(product=>product.id==request.params.id);if(index<0)return response.status(404).json({error:'Product not found'});products[index]={id:products[index].id,...request.body};response.status(200).json(products[index])});
+app.delete('/api/products/:id',(request,response)=>{const oldLength=products.length;products=products.filter(product=>product.id!=request.params.id);if(products.length===oldLength)return response.status(404).json({error:'Product not found'});response.status(204).end()});
+app.use((error,request,response,next)=>response.status(500).json({error:'API error'})); app.listen(3000,()=>console.log('REST API on port 3000'));

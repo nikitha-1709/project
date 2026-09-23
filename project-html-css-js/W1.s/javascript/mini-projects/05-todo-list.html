@@ -1,0 +1,2 @@
+<link rel="stylesheet" href="../../nikitha-ui.css"><!doctype html><meta charset="utf-8"><title>To-do List</title><body class="nikitha-ui"><h1>To-do List</h1><input id="task"><button onclick="add()">Add</button><ul id="list"></ul><script>function add(){if(task.value.trim()){const li=document.createElement('li');li.textContent=task.value+' ';const button=document.createElement('button');button.textContent='Done';button.onclick=()=>li.remove();li.append(button);list.append(li);task.value=''}}</script>
+</body>

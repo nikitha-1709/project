@@ -1,0 +1,2 @@
+const http = require('http');
+http.createServer((request, response) => { console.log(`${request.method} ${request.url}`); response.writeHead(200, {'Content-Type':'application/json'}); response.end(JSON.stringify({method:request.method, url:request.url})); }).listen(3000);

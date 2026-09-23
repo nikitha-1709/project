@@ -1,0 +1,2 @@
+<link rel="stylesheet" href="../../nikitha-ui.css"><!doctype html><meta charset="utf-8"><title>Countdown Timer</title><body class="nikitha-ui"><input id="seconds" type="number" value="10"><button onclick="start()">Start</button><h1 id="out"></h1><script>function start(){let value=+seconds.value;out.textContent=value;const timer=setInterval(()=>{out.textContent=--value;if(value<=0)clearInterval(timer)},1000)}</script>
+</body>

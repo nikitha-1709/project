@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head><link rel="stylesheet" href="nikitha-ui.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>W1.s Learning Hub</title>
+  <style>
+    :root { --ink:#172033; --muted:#64748b; --paper:#f6f8fb; --line:#dbe3ec; --blue:#2563eb; --teal:#0f766e; --orange:#c2410c; --green:#166534; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:radial-gradient(circle at top right,#dbeafe 0,transparent 32rem),var(--paper); font:16px/1.5 Georgia,'Times New Roman',serif; }
+    header { padding:4.5rem 1.5rem 3rem; color:#fff; background:#172033; }
+    .hero, main { width:min(1180px,calc(100% - 2rem)); margin:auto; }
+    .eyebrow, .tag, .count { font:700 .75rem Arial,sans-serif; letter-spacing:.1em; text-transform:uppercase; }
+    .eyebrow { margin:0 0 .8rem; color:#93c5fd; }
+    h1,h2,h3 { font-family:Arial,sans-serif; line-height:1.1; }
+    h1 { max-width:700px; margin:0; font-size:clamp(2.5rem,6vw,5rem); letter-spacing:-.04em; }
+    header p:last-child { max-width:650px; margin:1.2rem 0 0; color:#cbd5e1; font-size:1.1rem; }
+    main { padding:2rem 0 5rem; }
+    .toolbar { display:flex; flex-wrap:wrap; gap:.75rem; align-items:center; margin-bottom:2rem; }
+    input { flex:1 1 260px; min-height:44px; padding:.7rem 1rem; border:1px solid var(--line); border-radius:8px; font:inherit; }
+    .summary { color:var(--muted); font:700 .8rem Arial,sans-serif; }
+    section { margin:2.5rem 0; }
+    .section-head { display:flex; justify-content:space-between; align-items:end; gap:1rem; margin-bottom:1rem; }
+    h2 { margin:0; font-size:clamp(1.5rem,3vw,2.2rem); }
+    .count { color:var(--muted); }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:.8rem; }
+    .card { display:block; min-height:112px; padding:1.1rem; color:var(--ink); background:#fff; border:1px solid var(--line); border-radius:8px; text-decoration:none; box-shadow:0 3px 12px #1720330b; transition:transform .18s,border-color .18s,box-shadow .18s; }
+    .card:hover,.card:focus-visible { transform:translateY(-3px); border-color:var(--blue); box-shadow:0 8px 18px #2563eb1c; outline:none; }
+    .card h3 { margin:.35rem 0 0; font-size:1.05rem; }
+    .tag { margin:0; color:var(--blue); }
+    .css .tag { color:var(--teal); } .projects .tag { color:var(--orange); } .node .tag { color:var(--green); }
+    .empty { display:none; padding:2rem; color:var(--muted); text-align:center; background:#fff; border:1px dashed var(--line); }
+    footer { padding:1.5rem; color:var(--muted); text-align:center; font: .8rem Arial,sans-serif; }
+    @media (max-width:600px) { .section-head { display:block; } .count { display:block; margin-top:.5rem; } }
+  </style>
+</head>
+<body class="nikitha-ui">
+  <header><div class="hero"><p class="eyebrow">W1.s learning hub</p><h1>All lessons. One neat index.</h1><p>Browse every HTML, CSS, JavaScript, DOM, mini-project, and Node.js exercise from one starting page.</p></div></header>
+  <main>
+    <div class="toolbar"><input id="search" type="search" placeholder="Search lessons and projects..."><span id="summary" class="summary"></span></div>
+    <div id="catalog"></div><p id="empty" class="empty">No matching lessons found.</p>
+  </main>
+  <footer>Open <strong>index1.html</strong> whenever you need the complete workspace catalog.</footer>
+  <script>
+    const groups = [
+      { title:'HTML lessons', className:'html', links:[['01-basic-elements','Basic HTML elements'],['02-lists','Lists'],['03-tables','Tables'],['04-images-links','Images and links'],['05-student-registration','Student registration'],['06-audio-video','Audio and video'],['07-frames-iframes','Frames and iframes'],['08-semantic-elements','Semantic elements'],['09-html5-input-types','HTML5 input types'],['10-college-timetable','College timetable'],['11-css-styling','CSS styling'],['12-css-selectors','CSS selectors'],['13-responsive','Responsive HTML'],['14-bootstrap-components','Bootstrap components'],['15-portfolio','Portfolio']] },
+      { title:'CSS exercises', className:'css', links:[['index','CSS exercises index'], ...['css-types','selectors','colors-backgrounds-borders','fonts-text','box-model','sizing','positioning','float-clear','navbar','pseudo-classes','pseudo-elements','lists-tables','registration-form','flexbox','grid','media-queries','transitions-transformations','animations','responsive-nav','portfolio','student-profile','login','photo-gallery','product-card','flex-cards','homepage','inheritance-specificity','selector-types','combinators','css-variables','background-images','gradients','shadows','border-radius','opacity-transparency','overflow','z-index','display','visibility','dropdown','image-hover','tooltip','button-animation','filters','object-fit','dashboard','two-column-grid','three-column-flex','sticky-header','fixed-sidebar','responsive-footer','login-signup','contact-form','college-homepage','restaurant','shopping','travel','news-blog','multi-section-portfolio','grid-template-areas','flex-alignment-order','responsive-grid','mobile-first','transitions','transformations','keyframes','spinner','sliding-card','css-modal','dark-mode','responsive-type','clamp-min-max','calc','complete-responsive','final-showcase'].map((name,index)=>[`${String(index+1).padStart(2,'0')}-${name}`,name.replaceAll('-',' ')])], directory:'css-exercises/' },
+      { title:'JavaScript exercises', className:'javascript', links:[['index','JavaScript lab index'],['basic-programs','Basic programs'],['dom-events','DOM and events'],['advanced','Advanced JavaScript'], ...['hello-world','arithmetic-operations','largest-three','even-or-odd','positive-negative-zero','factorial','fibonacci','prime-check','number-palindrome','reverse-number','sum-digits','largest-smallest-array','sort-array','array-sum-average','functions','arrow-functions','strings-methods','arrays-methods','objects','date-math','change-text','change-background','click-event','show-hide','change-image','digital-clock','calculator','number-guessing','form-validation','validate-fields','todo-list','quiz','counter','stopwatch','countdown','es6-syntax','spread-rest','classes-objects','inheritance','async-patterns','fetch-api','dynamic-api','local-storage','responsive-login','interactive-webpage','swap-numbers','gcd','lcm','armstrong','perfect-number','multiplication-table','power','count-digits','second-largest','remove-duplicates','merge-arrays','frequency-array','common-elements','reverse-string','string-palindrome','vowels-consonants','count-words','character-frequency','regular-expressions','validate-email-regex','media-query-demo','final-interactive-lab'].map((name,index)=>[`${String(index+1).padStart(2,'0')}-${name}`,name.replaceAll('-',' ')])], directory:'javascript/' },
+      { title:'DOM, events, forms, and browser APIs', className:'javascript', links:[['dom-lab/index','DOM lab index'],['dom-lab/dom-manipulation','DOM manipulation'],['dom-lab/dom-manipulation-extended','Extended DOM manipulation'],['dom-lab/events','Events'],['dom-lab/forms-validation','Forms and validation'],['dom-lab/browser-storage','Browser and storage']], directory:'javascript/' },
+      { title:'Mini projects', className:'projects', links:[['mini-projects/index','Mini projects index'], ...['calculator','digital-clock','stopwatch','countdown-timer','todo-list','weather-api','quiz','number-guessing','tic-tac-toe','expense-tracker','grade-calculator','shopping-cart','notes-localstorage','password-generator','bmi-calculator','currency-converter','interactive-portfolio'].map((name,index)=>[`${String(index+1).padStart(2,'0')}-${name}`,name.replaceAll('-',' ')])], directory:'javascript/mini-projects/' },
+      { title:'Node.js backend', className:'node', links:[['nodejs-lab/index','Node.js lab index'],['nodejs-lab/express-backend/all-in-one','All-in-one Express backend'],['nodejs-lab/express-backend/index','Express backend index'],['nodejs-lab/README','Node.js README'],['nodejs-lab/package','Package setup'], ...['01-client-server','02-http-server','03-request-response','04-built-in-modules','05-file-system','06-path-module','07-custom-module','07-multiply','08-npm-package','09-async-patterns','10-error-handling','11-express-app','12-express-get-post','13-express-static','14-express-responses'].map(name=>[`nodejs-lab/${name}`,name.replace(/^[0-9]+-/,'').replaceAll('-',' ')]), ...[['01-routing','Routing and route parameters'],['02-middleware','Middleware'],['03-cookies-sessions','Cookies and sessions'],['04-database-crud','Database CRUD'],['05-crud-management','Student, user, and product CRUD'],['06-authentication','Authentication and JWT'],['07-authorization','Authorization and roles'],['08-rest-api','REST API'],['09-student-rest-api','Student REST API'],['10-user-rest-api','User REST API'],['11-product-rest-api','Product REST API']].map(([name,label])=>[`nodejs-lab/express-backend/${name}`,label])], extensionMap:{'nodejs-lab/README':'.md','nodejs-lab/package':'.json', ...Object.fromEntries(['01-client-server','02-http-server','03-request-response','04-built-in-modules','05-file-system','06-path-module','07-custom-module','07-multiply','08-npm-package','09-async-patterns','10-error-handling','11-express-app','12-express-get-post','13-express-static','14-express-responses'].map(name=>[`nodejs-lab/${name}`,'.js'])), ...Object.fromEntries(['all-in-one','01-routing','02-middleware','03-cookies-sessions','04-database-crud','05-crud-management','06-authentication','07-authorization','08-rest-api','09-student-rest-api','10-user-rest-api','11-product-rest-api'].map(name=>[`nodejs-lab/express-backend/${name}`,'.js']))} }
+    ];
+    function titleCase(value){return value.replace(/\b\w/g,letter=>letter.toUpperCase())}
+    function render(){const query=search.value.trim().toLowerCase();let visible=0;catalog.innerHTML=groups.map(group=>{const cards=group.links.map(([path,label],index)=>{const extension=group.extensionMap?.[path]||'.html';const href=(group.directory||'')+path+extension;const text=`${group.title} ${label}`.toLowerCase();if(query&&!text.includes(query))return '';visible++;return `<a class="card" href="${href}"><p class="tag">${String(index+1).padStart(2,'0')}</p><h3>${titleCase(label)}</h3></a>`}).join('');return `<section class="${group.className}"><div class="section-head"><h2>${group.title}</h2><span class="count">${group.links.length} files</span></div><div class="grid">${cards}</div></section>`}).join('');summary.textContent=`${visible} matching files`;empty.style.display=visible?'none':'block'}
+    search.addEventListener('input',render);render();
+  </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head><link rel="stylesheet" href="nikitha-ui.css"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Student Registration</title></head>
+<body class="nikitha-ui">
+  <h1>Student Registration Form</h1>
+  <form action="#" method="post">
+    <label for="name">Full name:</label><br><input id="name" name="name" type="text" required><br><br>
+    <label for="email">Email:</label><br><input id="email" name="email" type="email" required><br><br>
+    <label for="course">Course:</label><br><select id="course" name="course"><option>BCA</option><option>BSc Computer Science</option><option>BBA</option></select><br><br>
+    <fieldset><legend>Study mode</legend><label><input type="radio" name="mode" value="full-time" checked> Full-time</label><label><input type="radio" name="mode" value="part-time"> Part-time</label></fieldset><br>
+    <label><input type="checkbox" name="terms" required> I accept the terms and conditions.</label><br><br>
+    <label for="address">Address:</label><br><textarea id="address" name="address" rows="4" cols="35"></textarea><br><br>
+    <button type="submit">Register</button><button type="reset">Clear</button>
+  </form>
+</body>
+</html>

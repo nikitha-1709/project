@@ -1,0 +1,1 @@
+{"name":"w1-nodejs-lab","version":"1.0.0","private":true,"scripts":{"server":"node 02-http-server.js","express":"node 11-express-app.js"},"dependencies":{"express":"^4.21.2"}}

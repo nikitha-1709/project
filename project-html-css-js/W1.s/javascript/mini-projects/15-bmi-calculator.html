@@ -1,0 +1,2 @@
+<link rel="stylesheet" href="../../nikitha-ui.css"><!doctype html><meta charset="utf-8"><title>BMI Calculator</title><body class="nikitha-ui"><h1>BMI Calculator</h1><input id="weight" type="number" placeholder="Weight kg"><input id="height" type="number" placeholder="Height m"><button onclick="calculate()">Calculate</button><p id="out"></p><script>function calculate(){const bmi=+weight.value/(+height.value**2);out.textContent=`BMI: ${bmi.toFixed(2)} - ${bmi<18.5?'Underweight':bmi<25?'Healthy':bmi<30?'Overweight':'Obese'}`}</script>
+</body>

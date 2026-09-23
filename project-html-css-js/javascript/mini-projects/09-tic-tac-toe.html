@@ -1,0 +1,2 @@
+<link rel="stylesheet" href="../../nikitha-ui.css"><!doctype html><meta charset="utf-8"><title>Tic Tac Toe</title><body class="nikitha-ui"><h1>Tic-Tac-Toe</h1><div id="board"></div><p id="out"></p><script>let turn='X',cells=Array(9).fill('');board.style.display='grid';board.style.gridTemplateColumns='repeat(3,60px)';cells.forEach((_,i)=>{const b=document.createElement('button');b.style.height='60px';b.onclick=()=>{if(!cells[i]){cells[i]=turn;b.textContent=turn;turn=turn==='X'?'O':'X';out.textContent=cells.join(' ')}};board.append(b)})</script>
+</body>

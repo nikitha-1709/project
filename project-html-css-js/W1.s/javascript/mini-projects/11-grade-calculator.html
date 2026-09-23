@@ -1,0 +1,2 @@
+<link rel="stylesheet" href="../../nikitha-ui.css"><!doctype html><meta charset="utf-8"><title>Grade Calculator</title><body class="nikitha-ui"><h1>Student Marks Calculator</h1><input id="marks" placeholder="Marks: 80, 72, 91"><button onclick="calculate()">Calculate</button><p id="out"></p><script>function calculate(){const values=marks.value.split(',').map(Number);const average=values.reduce((a,b)=>a+b,0)/values.length;out.textContent=`Average: ${average.toFixed(2)}, Grade: ${average>=90?'A':average>=80?'B':average>=70?'C':average>=60?'D':'F'}`}</script>
+</body>

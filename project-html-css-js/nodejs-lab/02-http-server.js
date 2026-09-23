@@ -1,0 +1,2 @@
+const http = require('http');
+http.createServer((request, response) => { response.writeHead(200, {'Content-Type':'text/plain'}); response.end('Hello from a basic HTTP server'); }).listen(3000, () => console.log('Listening on port 3000'));

@@ -1,0 +1,2 @@
+<link rel="stylesheet" href="../../nikitha-ui.css"><!doctype html><meta charset="utf-8"><title>Number Guessing</title><body class="nikitha-ui"><h1>Guess 1 to 10</h1><input id="guess" type="number"><button onclick="check()">Guess</button><p id="out"></p><script>const secret=Math.floor(Math.random()*10)+1;function check(){out.textContent=+guess.value===secret?'Correct!':+guess.value<secret?'Try higher':'Try lower'}</script>
+</body>

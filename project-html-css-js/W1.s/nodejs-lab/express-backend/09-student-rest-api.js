@@ -1,0 +1,2 @@
+const express = require('express'); const app = express(); app.use(express.json()); const students=[];
+app.get('/students',(request,response)=>response.json(students)); app.post('/students',(request,response)=>{if(!request.body.name)return response.status(400).json({error:'name required'});const student={id:Date.now(),...request.body};students.push(student);response.status(201).json(student)}); app.listen(3000,()=>console.log('Student REST API on port 3000'));
