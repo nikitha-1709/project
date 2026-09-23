@@ -1,7 +1,0 @@
-const express = require('express');
-const bcrypt = require('bcryptjs'); const jwt = require('jsonwebtoken'); const app = express(); app.use(express.json());
-const users = new Map(); const secret = 'replace-this-secret';
-app.post('/register', async (request,response)=>{const {username,password}=request.body;if(!username||!password)return response.status(400).json({error:'username and password required'});users.set(username,{username,password:await bcrypt.hash(password,10),role:'user'});response.status(201).json({username})});
-app.post('/login', async (request,response)=>{const user=users.get(request.body.username);if(!user||!(await bcrypt.compare(request.body.password,user.password)))return response.status(401).json({error:'Invalid login'});response.json({token:jwt.sign({username:user.username,role:user.role},secret,{expiresIn:'1h'})})});
-function jwtAuth(request,response,next){try{request.user=jwt.verify((request.headers.authorization||'').replace('Bearer ','').trim(),secret);next()}catch(error){response.status(401).json({error:'Invalid token'})}}
-app.get('/profile',jwtAuth,(request,response)=>response.json(request.user)); app.listen(3000,()=>console.log('Auth server on port 3000'));

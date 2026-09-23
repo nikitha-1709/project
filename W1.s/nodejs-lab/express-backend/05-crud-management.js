@@ -1,5 +1,0 @@
-const express = require('express');
-const app = express(); app.use(express.json());
-const records = {students:[], users:[], products:[]};
-for (const resource of Object.keys(records)) { app.get('/'+resource, (request,response)=>response.json(records[resource])); app.post('/'+resource,(request,response)=>{const item={id:Date.now(),...request.body};records[resource].push(item);response.status(201).json(item)}); app.put('/'+resource+'/:id',(request,response)=>{const index=records[resource].findIndex(item=>item.id==request.params.id);if(index<0)return response.status(404).json({error:'Not found'});records[resource][index]={...records[resource][index],...request.body};response.json(records[resource][index])});app.delete('/'+resource+'/:id',(request,response)=>{records[resource]=records[resource].filter(item=>item.id!=request.params.id);response.status(204).end()})}
-app.listen(3000,()=>console.log('Student, user, and product CRUD server on port 3000'));

@@ -1,2 +1,0 @@
-<link rel="stylesheet" href="../../nikitha-ui.css"><!doctype html><meta charset="utf-8"><title>Shopping Cart</title><body class="nikitha-ui"><h1>Shopping Cart</h1><button onclick="add('Notebook',5)">Notebook $5</button><button onclick="add('Pen',2)">Pen $2</button><ul id="cart"></ul><p id="total">Total: $0</p><script>let items=[],total=0;function add(name,price){items.push(name);total+=price;cart.innerHTML=items.map(item=>`<li>${item}</li>`).join('');document.getElementById('total').textContent=`Total: $${total}`}</script>
-</body>

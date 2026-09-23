@@ -1,2 +1,0 @@
-const express = require('express'); const app = express(); app.use(express.json()); const users=[];
-app.get('/users',(request,response)=>response.json(users)); app.post('/users',(request,response)=>{const user={id:Date.now(),role:'user',...request.body};users.push(user);response.status(201).json(user)}); app.get('/admin/users',(request,response)=>{if(request.headers['x-role']!=='admin')return response.status(403).json({error:'Admin only'});response.json(users)}); app.listen(3000,()=>console.log('User REST API on port 3000'));

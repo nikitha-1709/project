@@ -1,2 +1,0 @@
-<link rel="stylesheet" href="../nikitha-ui.css"><!doctype html><meta charset="utf-8"><title>42 Dynamic API</title><body class="nikitha-ui"><h1>Dynamic API Data</h1><button onclick="loadData()">Load</button><pre id="output"></pre><script>async function loadData(){const r=await fetch('https://jsonplaceholder.typicode.com/users/1');const d=await r.json();output.textContent=d.name}</script>
-</body>
